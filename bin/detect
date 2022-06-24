@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# bin/detect
+
+set -e
+
+SUPPORTED_STACKS=(heroku-22)
+
+for stack_option in "${SUPPORTED_STACKS[@]}"; do
+  if [[ $STACK = "$stack_option" ]]; then
+    echo "openssl ($stack_option stack)"
+    exit 0
+  fi
+done
+
+echo "openssl buildpack doesn't support the $STACK stack" && exit 1
